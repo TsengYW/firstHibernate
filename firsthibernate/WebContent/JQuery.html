@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JQuery</title>
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+BookID:<input type="text" id="bookid"/>
+Title:<input type="text" id="title"/>
+Author:<input type="text" id="author"/>
+Price:<input type="text" id="price"/><br/>
+<!--<button>Insert</button><br/>
+<button>Update</button><br/>
+<button>Delete</button><br/>  -->
+<input type="button" id="search" value="Search"/><br/>
+<div id="msg">message</div>
+<script>
+	function start()
+	{
+		$("button").click(excute);
+	}
+	function execute()
+	{	
+		var bd=$("#bookid").val();
+		var tt=$("#title").val();
+		var at=$("#author").val();
+		var pr=$("#price").val();
+		$.post("BookSearchServlet",{"bookid":bd,"title":tt,"author":at,"price":pr},show);
+	}
+	function show(rs)
+	{
+		$("#msg").html(rs);
+	}
+	$(document).ready(start);
+
+</script>
+
+</body>
+</html>
